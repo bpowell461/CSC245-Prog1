@@ -47,7 +47,7 @@ int main()
  cout<<"Selection: ";
  }
  
- void HeadInsert(DList<int> list)
+ void HeadInsert(DList<int>& list)
  {
   
   cout<<"Item to Insert: ";
@@ -55,11 +55,11 @@ int main()
   cin>>input;
   if (list.inList(input))
   cout<<"Already in the list!"<<endl;
-  else
+  else{
   list.insertHead(input);
-  
+  }
  }
- void TailInsert(DList<int> list)
+ void TailInsert(DList<int>& list)
  {
   
   cout<<"Item to Insert: ";
@@ -70,7 +70,7 @@ int main()
   else
   list.appendTail(input);
  }
- void AcessItem(DList<int> list)
+ void AccessItem(DList<int>& list)
  {
   
   cout<<"Item to Acesss: ";
@@ -83,7 +83,7 @@ int main()
   list.insertHead(input);
   }
  }
- void Delete(DList<int> list)
+ void Delete(DList<int>& list)
  {
   
   cout<<"Item to delete: ";
@@ -92,14 +92,14 @@ int main()
   if (!list.inList(input))
   cout<<"Item not found!"<<endl;
   else
-  list.insertHead(input);
+  list.deleteItem(input);
   
  }
- void PrintList(DList<int> list)
+ void PrintList(DList<int>& list)
  {
   list.print();
  }
-  void PrintLength(DList<int> list)
+  void PrintLength(DList<int>& list)
  {
   cout<<list.lengthIs()<<endl;
  }
