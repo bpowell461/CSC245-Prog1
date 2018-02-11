@@ -40,13 +40,13 @@ void DList<ItemType>::deleteItem (ItemType item)
 {
 	//  Pre :  item to be deleted is passed in via parameter 
         // Post :  item is deleted if it exists in list 
-  NodeType<ItemType>* locationX = new NodeType;
+  NodeType<ItemType>* locationX = new NodeType<ItemType>;
   locationX -> info = item;
   if(isEmpty())
     cout<<"Error: List is empty"<<endl;
     
   else{
-    locationX = head -> next;
+    locationX = head;
     while(locationX!=NULL)
     {
       if(locationX ->info == item)
@@ -66,13 +66,9 @@ bool DList<ItemType>::inList (ItemType item) const
 {
 	//  Pre :  item to be located is passed in via parameter 
         // Post :  function returns bool value if item is found 
-  NodeType<ItemType>* locationX = new NodeType;
+  NodeType<ItemType>* locationX = new NodeType<ItemType>;
   locationX -> info = item;
-    if(isEmpty())
-    cout<<"Error: List is empty"<<endl;
-    
-  else{
-    locationX = head -> next;
+  locationX = head;
     while(locationX!=NULL)
     {
       if(locationX ->info == item)
@@ -83,7 +79,6 @@ bool DList<ItemType>::inList (ItemType item) const
         locationX = locationX -> next;
     }
     
-  }
   return false;
 
 }
@@ -92,7 +87,7 @@ template <class ItemType>
 bool DList<ItemType>::isEmpty() const		
 {
 	// Post : function returns true if list is empty, false otherwise
-	return(head==NULL);
+	return(length==0);
 }
 
 template <class ItemType>
@@ -100,13 +95,12 @@ void DList<ItemType>::print() const
 {
 	// Pre  : List is not empty 
 	// Post : Items in List have been printed to screen
-  NodeType<ItemType>* locationX = new NodeType;
-  locationX -> info = item;
+  NodeType<ItemType>* locationX = new NodeType<ItemType>;
     if(isEmpty())
     cout<<"Error: List is empty"<<endl;
     
   else{
-    locationX = head -> next;
+    locationX = head;
     while(locationX!=NULL)
     {
         cout<<locationX->info<<endl;
@@ -123,18 +117,18 @@ void DList<ItemType>::insertHead(ItemType item)
         // Post : item is inserted at head of list;  Former first node is 
         //        linked back to this new one via double link;
         //        Length incremented;  Special case handled if list is empty 
-	  NodeType<ItemType>* newNode = new NodeType;
+	  NodeType<ItemType>* newNode = new NodeType<ItemType>;
     newNode -> info = item;
     if(isEmpty()){
-      head -> next = newNode;
+      head = newNode;
       newNode -> back = NULL;
       length++;
     }
   else{
-    newNode -> next = head -> next;
-    head -> next -> back = newNode;
-    head -> next = newNode;
+    newNode -> next = head;
+    newNode -> next -> back = newNode;
     newNode -> back = NULL;
+    head = newNode;
     length++;
   }
 }
@@ -145,10 +139,10 @@ void DList<ItemType>::appendTail(ItemType item)
 	//  Pre :  item to be inserted is passed in via parameter
         // Post :  item is added to tail of list; Former last node
         //         is linked to this new one via double link 
-    NodeType<ItemType>* newNode = new NodeType;
+    NodeType<ItemType>* newNode = new NodeType<ItemType>;
     newNode -> info = item;
     if(isEmpty()){
-      head -> next = newNode;
+      head = newNode;
       newNode -> back = NULL;
       length++;
     }
@@ -173,14 +167,14 @@ NodeType<ItemType>* DList<ItemType>::location(ItemType item) const
 	//  Pre : item to be located is passed in via parameter 
         // Post : function returns address of item being searched for --
         //        if not found, NULL is returned  
-  NodeType<ItemType>* locationX = new NodeType;
+  NodeType<ItemType>* locationX = new NodeType<ItemType>;
   locationX -> info = item;
     if(isEmpty()){
     cout<<"Error: List is empty"<<endl;
     }
     
   else{
-    locationX = head -> next;
+    locationX = head;
     while(locationX!=NULL)
     {
       if(locationX ->info == item)
@@ -200,13 +194,12 @@ template <class ItemType>
 NodeType<ItemType>* DList<ItemType>::last() const	
 {
 	// Post : Function returns location of current last item in list
-  NodeType<ItemType>* locationX = new NodeType;
-  locationX -> info = item;
+  NodeType<ItemType>* locationX = new NodeType<ItemType>;
     if(isEmpty())
     cout<<"Error: List is empty"<<endl;
     
   else{
-    locationX = head -> next;
+    locationX = head;
     while(locationX->next!=NULL)
     {
       locationX = locationX -> next;
